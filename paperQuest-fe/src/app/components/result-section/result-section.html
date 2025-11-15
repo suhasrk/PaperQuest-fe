@@ -1,1 +1,41 @@
-<p>result-section works!</p>
+<div *ngIf="showResults" id="results" class="w-full flex justify-center mt-10">
+  <!-- Transparent background container -->
+  <div class="w-[60%] bg-transparent">
+
+    <!-- Loader -->
+    <div *ngIf="loading" class="flex justify-center items-center py-10">
+      <span class="text-white text-xl font-mono animate-pulse">Fetching papers...</span>
+    </div>
+
+    <!-- Results -->
+    <div *ngIf="!loading" class="space-y-4">
+
+      <div
+        *ngFor="let paper of papers"
+        class="bg-black bg-opacity-90 rounded-xl p-5 shadow-xl flex flex-col gap-2"
+      >
+        <!-- Title -->
+        <h3 class="font-semibold text-white text-lg">
+          {{ paper.title }}
+        </h3>
+
+        <!-- Metadata -->
+        <p class="text-gray-300 text-sm">
+          {{ paper.year }} · {{ paper.source }} · Similarity:
+          {{ paper.similarity }}
+        </p>
+
+        <!-- URL -->
+        <a
+          [href]="paper.url"
+          target="_blank"
+          class="text-blue-400 text-sm underline hover:text-blue-300 transition"
+        >
+          View Paper →
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</div>

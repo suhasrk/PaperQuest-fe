@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ApiService } from '../../services/api-call.service';
 
 @Component({
   selector: 'app-user-input-section',
@@ -10,7 +11,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class UserInputSection {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private apiService: ApiService) {
     this.form = this.fb.group({
       topic: [''],
       numPapers: [5],
@@ -26,7 +27,6 @@ export class UserInputSection {
   }
 
   onSubmit() {
-    // Handle form submission
-    console.log(this.form.value);
+    this.apiService.updateQueryParams(this.form.value);
   }
 }
