@@ -41,4 +41,14 @@ export class ResultSection implements OnInit {
       })
     });
   }
+
+  getSimilarityBadgeClass(score: number) {
+  if (score >= 0.70) {
+    return 'bg-emerald-100 text-emerald-700';
+  } else if (score >= 0.60) {
+    return 'bg-yellow-100 text-yellow-700';
+  } else {
+    return 'bg-red-100 text-red-700';
+  }
+  } 
 }
