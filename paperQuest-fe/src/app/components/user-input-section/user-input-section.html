@@ -1,1 +1,44 @@
-<p>user-input-section works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex justify-center items-center min-h-screen">
+  <div class="w-[40%]">
+    <span class="text-xl font-mono text-white px-2 py-2 block tracking-wide">What would you like to explore today?</span>
+    <div class="relative">
+      <input
+        type="text"
+        id="Search"
+        formControlName="topic"
+        autocomplete="off"
+        class="mt-0.5 w-full rounded-full border-2 border-gray-300 bg-transparent text-white pe-10 ps-4 shadow-lg text-lg py-3 pb-6 text-center focus:border-gray-400 focus:ring-gray-300 placeholder-white placeholder-opacity-80"
+      >
+      <span class="absolute inset-y-0 right-2 grid w-8 place-content-center">
+        <button type="submit" aria-label="Submit" class="rounded-full p-1.5 text-gray-700 transition-colors hover:bg-gray-100">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" class="size-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path>
+          </svg>
+        </button>
+      </span>
+    </div>
+    <!-- Quantity input slider below search bar -->
+    <label for="numPapers" class="block mt-8 w-full">
+      <span class="font-mono block text-sm font-medium text-white">How many relevant papers can I get for you?</span>
+      <div class="flex items-center gap-4 mt-3">
+        <input type="range" name="numPapers" id="numPapers" min="1" max="10"
+          formControlName="numPapers"
+          class="h-3.5 w-full appearance-none rounded-full bg-gray-300 [&::-webkit-slider-thumb]:size-7 [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-[6px] [&::-webkit-slider-thumb]:border-gray-500 [&::-webkit-slider-thumb]:bg-gray-200">
+        <span class="text-lg font-bold text-white">{{ form.value.numPapers }}</span>
+      </div>
+      <div class="mt-1 flex items-center justify-between">
+        <span class="text-xs font-medium text-gray-300">1</span>
+        <span class="text-xs font-medium text-gray-300">10</span>
+      </div>
+      <div class="flex justify-center">
+        <button type="submit"
+          [disabled]="!form.get('topic')?.value"
+          (click)="onSubmit()"
+          class="mt-8 w-1/2 py-3 rounded-full text-white text-lg shadow-lg border border-gray-200 transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 hover:shadow-2xl hover:cursor-pointer"
+          style="background: oklch(15.057% 0.00979 317.58);">
+          Search
+        </button>
+      </div>
+    </label>
+  </div>
+</form>
